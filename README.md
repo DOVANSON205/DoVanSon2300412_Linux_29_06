@@ -25,37 +25,29 @@
 
 Trong home directory của người dùng `root` tạo thư mục `baitap`.
 
-```bash
-sudo mkdir -p /root/baitap
-sudo ls -ld /root/baitap
-```
+![Câu 1](assets/cau1.png)
+
 
 ## Câu 2 (1 điểm)
 
 Xem nội dung tập tin `/etc/passwd` và cho biết có bao nhiêu người dùng do hệ thống tạo ra và có người dùng nào có `UID=100` không?
 
-```bash
-awk -F: '$3 < 1000 { count++ } END { print "So user he thong:", count + 0 }' /etc/passwd
-awk -F: '$3 == 100 { print "User co UID=100:", $1 }' /etc/passwd
-```
+![Câu 2](assets/cau2.png)
+
 
 ## Câu 3 (1 điểm)
 
 Cho biết có bao nhiêu người dùng có `UID=100`, `GID=100`. Ghi nhận những người dùng này vào tệp tin `dsuser` trong thư mục `baitap`.
 
-```bash
-awk -F: '$3 == 100 && $4 == 100 { print $1 }' /etc/passwd | sudo tee /root/baitap/dsuser
-echo "So user UID=100, GID=100: $(sudo cat /root/baitap/dsuser | wc -l)"
-sudo cat /root/baitap/dsuser
-```
+![Câu 3](assets/cau3.png)
+
 
 ## Câu 4 (1 điểm)
 
 Xem nội dung tập tin `/etc/group` và cho biết có bao nhiêu nhóm do hệ thống tạo ra.
 
-```bash
-awk -F: '$3 < 1000 { count++ } END { print "So nhom he thong:", count + 0 }' /etc/group
-```
+![Câu 4](assets/cau4.png)
+
 
 ## Câu 5 (1 điểm)
 
@@ -65,12 +57,8 @@ Tạo các nhóm sau:
 * `admin`
 * `user`
 
-```bash
-sudo groupadd -f hocvien
-sudo groupadd -f admin
-sudo groupadd -f user
-getent group hocvien admin user
-```
+![Câu 5](assets/cau5.png)
+
 
 ## Câu 6 (1 điểm)
 
@@ -86,29 +74,15 @@ getent group hocvien admin user
 
 Các tài khoản đều có mật khẩu là `123456`.
 
-```bash
-sudo useradd -m -g hocvien hv1 || true
-sudo useradd -m -g hocvien hv2 || true
-sudo useradd -m -g hocvien hv3 || true
-sudo useradd -m -g user user1 || true
-sudo useradd -m -g user user2 || true
+![Câu 6](assets/cau6.png)
 
-echo "hv1:123456" | sudo chpasswd
-echo "hv2:123456" | sudo chpasswd
-echo "hv3:123456" | sudo chpasswd
-echo "user1:123456" | sudo chpasswd
-echo "user2:123456" | sudo chpasswd
-
-id hv1; id hv2; id hv3; id user1; id user2
-```
 
 ## Câu 7 (1 điểm)
 
 Hủy người dùng `hv3` trong nhóm `hocvien`.
 
-```bash
-sudo userdel -r hv3 || true
-```
+![Câu 7](assets/cau7.png)
+
 
 ## Câu 8 (1 điểm)
 
@@ -118,10 +92,8 @@ Cấp quyền cho tập tin `dsuser` như sau:
 * Nhóm: đọc
 * Người khác: không có quyền
 
-```bash
-sudo chmod 640 /root/baitap/dsuser
-sudo ls -l /root/baitap/dsuser
-```
+![Câu 8](assets/cau8.png)
+
 
 ## Câu 9 (1 điểm)
 
@@ -133,18 +105,12 @@ Thiết lập quyền mặc định như sau:
 
 Sau đó tạo tập tin, thư mục và so sánh quyền.
 
-```bash
-umask 027
-sudo touch /root/baitap/file_umask
-sudo mkdir -p /root/baitap/dir_umask
-sudo ls -l /root/baitap/file_umask
-sudo ls -ld /root/baitap/dir_umask
-```
+![Câu 9](assets/cau9.png)
+
 
 ## Câu 10 (1 điểm)
 
 Đăng nhập vào người dùng `user1` và truy cập vào tập tin `dsuser` xem có được hay không.
 
-```bash
-sudo su - user1 -c "cat /root/baitap/dsuser" || echo "Khong the truy cap"
-```
+![Câu 10](assets/cau10.png)
+
