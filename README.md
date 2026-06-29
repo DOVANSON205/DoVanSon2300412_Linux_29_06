@@ -1,8 +1,8 @@
 <div align="center">
 
-# Bài giữa kỳ Linux ngày 29/06
+# Bài cuối kỳ Linux ngày 29/06
 
-**Lời giải đề giữa kỳ của Sơn**
+**Lời giải đề cuối kỳ của Sơn**
 
 | Họ và tên | Mã sinh viên |
 | --- | --- |
@@ -30,7 +30,7 @@
 
 ![Sơ đồ xử lý Đề của Sơn](assets/diagram-de-son.png)
 
-## Nội dung bài giữa kỳ
+## Nội dung bài cuối kỳ
 
 Script `scripts/de_son.sh` thực hiện lần lượt 10 câu của đề:
 
