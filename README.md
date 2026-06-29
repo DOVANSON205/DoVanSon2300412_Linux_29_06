@@ -45,7 +45,7 @@ Cho biết có bao nhiêu người dùng có `UID=100`, `GID=100`. Ghi nhận nh
 
 ```bash
 awk -F: '$3 == 100 && $4 == 100 { print $1 }' /etc/passwd | sudo tee /root/baitap/dsuser
-echo "So user UID=100, GID=100: $(sudo wc -l < /root/baitap/dsuser)"
+echo "So user UID=100, GID=100: $(sudo cat /root/baitap/dsuser | wc -l)"
 sudo cat /root/baitap/dsuser
 ```
 
