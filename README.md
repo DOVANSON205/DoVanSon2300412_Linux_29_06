@@ -26,8 +26,8 @@
 Trong home directory của người dùng `root` tạo thư mục `baitap`.
 
 ```bash
-mkdir -p /root/baitap
-ls -ld /root/baitap
+sudo mkdir -p /root/baitap
+sudo ls -ld /root/baitap
 ```
 
 ## Câu 2 (1 điểm)
@@ -44,9 +44,9 @@ awk -F: '$3 == 100 { print "User co UID=100:", $1 }' /etc/passwd
 Cho biết có bao nhiêu người dùng có `UID=100`, `GID=100`. Ghi nhận những người dùng này vào tệp tin `dsuser` trong thư mục `baitap`.
 
 ```bash
-awk -F: '$3 == 100 && $4 == 100 { print $1 }' /etc/passwd > /root/baitap/dsuser
-echo "So user UID=100, GID=100: $(wc -l < /root/baitap/dsuser)"
-cat /root/baitap/dsuser
+awk -F: '$3 == 100 && $4 == 100 { print $1 }' /etc/passwd | sudo tee /root/baitap/dsuser
+echo "So user UID=100, GID=100: $(sudo wc -l < /root/baitap/dsuser)"
+sudo cat /root/baitap/dsuser
 ```
 
 ## Câu 4 (1 điểm)
@@ -66,9 +66,9 @@ Tạo các nhóm sau:
 * `user`
 
 ```bash
-groupadd -f hocvien
-groupadd -f admin
-groupadd -f user
+sudo groupadd -f hocvien
+sudo groupadd -f admin
+sudo groupadd -f user
 getent group hocvien admin user
 ```
 
@@ -87,17 +87,17 @@ getent group hocvien admin user
 Các tài khoản đều có mật khẩu là `123456`.
 
 ```bash
-useradd -m -g hocvien hv1
-useradd -m -g hocvien hv2
-useradd -m -g hocvien hv3
-useradd -m -g user user1
-useradd -m -g user user2
+sudo useradd -m -g hocvien hv1 || true
+sudo useradd -m -g hocvien hv2 || true
+sudo useradd -m -g hocvien hv3 || true
+sudo useradd -m -g user user1 || true
+sudo useradd -m -g user user2 || true
 
-echo "hv1:123456" | chpasswd
-echo "hv2:123456" | chpasswd
-echo "hv3:123456" | chpasswd
-echo "user1:123456" | chpasswd
-echo "user2:123456" | chpasswd
+echo "hv1:123456" | sudo chpasswd
+echo "hv2:123456" | sudo chpasswd
+echo "hv3:123456" | sudo chpasswd
+echo "user1:123456" | sudo chpasswd
+echo "user2:123456" | sudo chpasswd
 
 id hv1; id hv2; id hv3; id user1; id user2
 ```
@@ -107,7 +107,7 @@ id hv1; id hv2; id hv3; id user1; id user2
 Hủy người dùng `hv3` trong nhóm `hocvien`.
 
 ```bash
-userdel -r hv3
+sudo userdel -r hv3 || true
 ```
 
 ## Câu 8 (1 điểm)
@@ -119,8 +119,8 @@ Cấp quyền cho tập tin `dsuser` như sau:
 * Người khác: không có quyền
 
 ```bash
-chmod 640 /root/baitap/dsuser
-ls -l /root/baitap/dsuser
+sudo chmod 640 /root/baitap/dsuser
+sudo ls -l /root/baitap/dsuser
 ```
 
 ## Câu 9 (1 điểm)
@@ -135,10 +135,10 @@ Sau đó tạo tập tin, thư mục và so sánh quyền.
 
 ```bash
 umask 027
-touch /root/baitap/file_umask
-mkdir -p /root/baitap/dir_umask
-ls -l /root/baitap/file_umask
-ls -ld /root/baitap/dir_umask
+sudo touch /root/baitap/file_umask
+sudo mkdir -p /root/baitap/dir_umask
+sudo ls -l /root/baitap/file_umask
+sudo ls -ld /root/baitap/dir_umask
 ```
 
 ## Câu 10 (1 điểm)
@@ -146,5 +146,5 @@ ls -ld /root/baitap/dir_umask
 Đăng nhập vào người dùng `user1` và truy cập vào tập tin `dsuser` xem có được hay không.
 
 ```bash
-su - user1 -c "cat /root/baitap/dsuser"
+sudo su - user1 -c "cat /root/baitap/dsuser" || echo "Khong the truy cap"
 ```
