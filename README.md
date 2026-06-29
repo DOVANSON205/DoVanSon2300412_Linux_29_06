@@ -15,11 +15,6 @@
 ```text
 .
 ├── README.md
-├── assets/
-│   ├── code-de-son.png
-│   └── diagram-de-son.png
-├── diagrams/
-│   └── de_son_flow.puml
 ├── scripts/
 │   └── de_son.sh
 └── tests/
@@ -153,11 +148,3 @@ ls -ld /root/baitap/dir_umask
 ```bash
 su - user1 -c "cat /root/baitap/dsuser"
 ```
-
-## Sơ đồ xử lý
-
-![Sơ đồ xử lý Đề của Sơn](assets/diagram-de-son.png)
-
-## Ảnh chụp mã nguồn
-
-![Ảnh chụp mã nguồn Đề của Sơn](assets/code-de-son.png)
