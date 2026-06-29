@@ -21,6 +21,13 @@
     └── run_tests.sh
 ```
 
+## Hướng dẫn chạy nhanh (Copy & Paste)
+
+```bash
+chmod +x scripts/de_son.sh
+sudo bash scripts/de_son.sh
+```
+
 ## Câu 1 (1 điểm)
 
 Trong home directory của người dùng `root` tạo thư mục `baitap`.
